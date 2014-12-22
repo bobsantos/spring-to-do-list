@@ -1,7 +1,9 @@
 package sample.todo.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection="todos")
 public class ToDo {
 	@Id
 	private String id;
