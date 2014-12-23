@@ -30,13 +30,13 @@ public class ToDoController {
 	@Autowired
 	private ToDoResourceAssembler assembler;
 	
-	@RequestMapping(method=RequestMethod.GET)
+	@RequestMapping(method=RequestMethod.GET, produces={MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
 	public HttpEntity<List<ToDoResource>> list(){
 		return new ResponseEntity<List<ToDoResource>>(assembler.toResources(repository.findAll()), HttpStatus.OK);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST)
+	@RequestMapping(method=RequestMethod.POST, produces={MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
 	public HttpEntity<ToDoResource> post(@RequestBody ToDo entity){
 		return new ResponseEntity<ToDoResource>(assembler.toResource(repository.save(entity)), HttpStatus.OK);

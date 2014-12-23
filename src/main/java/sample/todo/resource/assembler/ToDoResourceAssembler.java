@@ -21,7 +21,7 @@ public class ToDoResourceAssembler extends ResourceAssemblerSupport<ToDo, ToDoRe
 		ToDoResource resource = new ToDoResource(entity);
 
 		try {
-			resource.add(linkTo(methodOn(ToDoController.class).list()).withSelfRel());
+			resource.add(linkTo(methodOn(ToDoController.class).get(entity.getId())).withSelfRel());
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
