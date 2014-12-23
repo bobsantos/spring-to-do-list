@@ -1,4 +1,4 @@
-var core = angular.module('core',['ui.router', 'ngResource']);
+var core = angular.module('core',[]);
 
 core.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ulrRouterProvider){
 	$stateProvider
