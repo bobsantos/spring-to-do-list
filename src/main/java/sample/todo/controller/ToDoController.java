@@ -48,8 +48,14 @@ public class ToDoController {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT, produces={MediaType.APPLICATION_JSON_VALUE})
-	public HttpEntity<ToDoResource> get(@PathVariable String id, @RequestBody ToDo todo){
+	public HttpEntity<ToDoResource> update(@PathVariable String id, @RequestBody ToDo todo){
 		ToDo updated = repository.save(todo);
 		return new ResponseEntity<ToDoResource>(assembler.toResource(updated), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	public HttpEntity<Void> delete(@PathVariable String id){
+		repository.delete(id);
+		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 }

@@ -21,28 +21,18 @@ core.factory('todosResource',['$resource', function($resource){
 
 core.factory('todoResource',['$resource', function($resource){
 	return $resource('http://localhost:8080/todos/:id', {id: '@id'}, {
-		update: {
+		'update': {
 			method: 'PUT'
+		},
+		
+		'delete': {
+			method: 'DELETE'
 		}
 	});
 }]);
 
-core.factory('validator', [function(){
-	var service = {};
-	
-	service.isInvalid = function(field){
-		return field.$invalid && field.$dirty;
-	};
-	
-	service.isValid = function(field){
-		return field.$valid && field.$dirty;
-	};
-	
-	return service;
-}]);
-
 core.controller('HomeCtrl',['$scope', 'todos', 'todosResource',
-    'todoResource', 'validator',
+    'todoResource',
     function($scope, todos, todosResource, todoResource, validator){
 		$scope.todos = todos;
 		
@@ -69,10 +59,20 @@ core.controller('HomeCtrl',['$scope', 'todos', 'todosResource',
 			delete todo._links;
 			var promise = todoResource.update(todo).$promise;
 			promise.then(function(res){
-				console.log(res);
 			});
 			promise.catch(function(res){
-				console.log(res);
+				$scope.errorMsg = 'An error occured while updating...';
+			});
+		};
+		
+		$scope.delete = function(index){
+			var todo = $scope.todos[index];
+			var promise = todoResource.delete(todo).$promise;
+			promise.then(function(res){
+				$scope.todos.splice(index, 1);
+			});
+			promise.catch(function(res){
+				$scope.errorMsg = 'An error occured while deleting...';
 			});
 		};
 	}

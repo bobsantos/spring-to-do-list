@@ -25,6 +25,7 @@
 							<input type="checkbox" ng-model="todo.done" ng-change="toggleDone(todo)">
 							<span>{{ todo.title }}</span>
 						</label>
+						<span class="pull-right delete" ng-click="delete($index)">X</span>
 					</div>
 				</li>
 			</ul>

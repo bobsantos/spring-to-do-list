@@ -1,2 +1,5 @@
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+.container { margin-top: 5%; }
 .error { color: #f00; }
+.delete { cursor: pointer; }
+.delete:hover { color: #f00; }
