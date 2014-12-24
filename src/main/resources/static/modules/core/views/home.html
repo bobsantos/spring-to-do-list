@@ -1,3 +1,18 @@
-<div ng-repeat="todo in todos">
-	{{ todo.title }}
-</div>
+<section class="header">
+	<h1>todos</h1>
+</section>
+<section class="content">
+	<section class="new-to-do">
+		<div class="error" ng-show="errorMsg">{{ errorMsg }}</div>
+		<form ng-submit="addToDo()">
+			<input type="text" placeholder="Title" ng-model="newTodo.title">
+			<input type="text" placeholder="Description" ng-model="newTodo.description">
+			<button type="submit">Add</button>
+		</form>
+	</section>
+	<section class="todo-list">
+		<ul>
+			<li ng-repeat="todo in todos">{{ todo.title }} : {{ todo.description }}</li>
+		</ul>
+	</section>
+</section>
