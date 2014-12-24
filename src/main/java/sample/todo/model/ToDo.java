@@ -10,12 +10,14 @@ public class ToDo {
 	
 	private String title;
 	private String description;
+	private boolean done;
 	
 	public ToDo() {}
 
-	public ToDo(String title, String description) {
+	public ToDo(String title, String description, boolean done) {
 		this.title = title;
 		this.description = description;
+		this.done = done;
 	}
 
 	public String getId() {
@@ -41,10 +43,18 @@ public class ToDo {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	public boolean isDone() {
+		return done;
+	}
+	
+	public void setDone(boolean done) {
+		this.done = done;
+	}
 
 	@Override
 	public String toString() {
 		return "ToDo [id=" + id + ", title=" + title + ", description="
-				+ description + "]";
+				+ description + ", done=" + done + "]";
 	}
 }

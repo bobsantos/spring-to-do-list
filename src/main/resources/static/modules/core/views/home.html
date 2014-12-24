@@ -12,7 +12,10 @@
 	</section>
 	<section class="todo-list">
 		<ul>
-			<li ng-repeat="todo in todos">{{ todo.title }} : {{ todo.description }}</li>
+			<li ng-repeat="todo in todos" class="todo">
+				<input type="checkbox" ng-model="todo.done" ng-change="toggleDone(todo)">
+				<span ng-class="{ 'done': todo.done }">{{ todo.title }}</span>
+			</li>
 		</ul>
 	</section>
 </section>
