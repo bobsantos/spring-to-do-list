@@ -1,4 +1,4 @@
 spring-to-do-list
 =================
 
-Spring HATEOAS, Spring Data, Spring Boot, Angular, Bootstrap
+TODO LIST using Spring HATEOAS, Spring Data, MongoDB, Spring Boot, AngularJS, Bootstrap
