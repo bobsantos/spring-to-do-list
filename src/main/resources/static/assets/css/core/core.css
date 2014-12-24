@@ -1,3 +1,2 @@
-li span.done { text-decoration: line-through; }
-
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+.error { color: #f00; }

@@ -27,25 +27,42 @@ core.factory('todoResource',['$resource', function($resource){
 	});
 }]);
 
+core.factory('validator', [function(){
+	var service = {};
+	
+	service.isInvalid = function(field){
+		return field.$invalid && field.$dirty;
+	};
+	
+	service.isValid = function(field){
+		return field.$valid && field.$dirty;
+	};
+	
+	return service;
+}]);
+
 core.controller('HomeCtrl',['$scope', 'todos', 'todosResource',
-    'todoResource',
-    function($scope, todos, todosResource, todoResource){
+    'todoResource', 'validator',
+    function($scope, todos, todosResource, todoResource, validator){
 		$scope.todos = todos;
 		
 		$scope.addToDo = function(){
-			var todo = { 
-					title: $scope.newTodo.title, 
-					description: $scope.newTodo.description,
-					done: false
+			if(!$scope.todoForm.$invalid){
+				var todo = { 
+						title: $scope.newTodo.title, 
+						description: $scope.newTodo.description,
+						done: false
 				};
-			var promise = todosResource.save(todo).$promise;
-			promise.then(function(res){
-				$scope.todos.push(todo);
-				$scope.newTodo = {};
-			});
-			promise.catch(function(res){
-				$scope.errorMsg = 'An error occured while saving...';
-			});
+				var promise = todosResource.save(todo).$promise;
+				promise.then(function(res){
+					$scope.todos.push(todo);
+					$scope.newTodo = {};
+					$scope.todoForm.$setPristine();
+				});
+				promise.catch(function(res){
+					$scope.errorMsg = 'An error occured while saving...';
+				});
+			}
 		}
 		
 		$scope.toggleDone = function(todo){
