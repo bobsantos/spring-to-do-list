@@ -1,2 +1,3 @@
-.done { text-decoration: line-through; }
-.todo { text-decoration: none; }
+li span.done { text-decoration: line-through; }
+
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
